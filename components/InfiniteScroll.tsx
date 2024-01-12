@@ -1,14 +1,14 @@
 'use client'
 
 import { CryptoCard } from '@/components/CryptoCard'
-import { CryptoCardSkeleton } from '@/components/CryptoCardSkeleton'
+import { CryptoCardFallback } from '@/components/CryptoCardFallback'
 import { Skeleton } from '@/components/ui/skeleton'
 import { CMCMap } from '@/lib/types'
 import { createClient } from '@supabase/supabase-js'
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-export default function InfiniteScroll({
+export function InfiniteScroll({
   search,
   initialCMC
 }: {
@@ -110,7 +110,7 @@ export default function InfiniteScroll({
           >
             <Skeleton className='h-full w-full scale-y-110'></Skeleton>
           </div>
-          <CryptoCardSkeleton count={7} />
+          <CryptoCardFallback count={7} />
         </>
       )}
       <div className='col-span-2 flex w-full items-center justify-center py-12 min-[480px]:col-span-3 sm:col-span-4 md:col-span-5 lg:col-span-6 xl:col-span-7'>
@@ -125,5 +125,3 @@ export default function InfiniteScroll({
     </>
   )
 }
-
-// col-span-2 min-[480px]:col-span-3 sm:col-span-4 md:col-span-5 lg:col-span-6 xl:col-span-7

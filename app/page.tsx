@@ -1,6 +1,6 @@
-import LogoGrid from '@/app/LogoGrid'
-import Search from '@/app/Search'
-import { CryptoCardSkeleton } from '@/components/CryptoCardSkeleton'
+import { CryptoCardFallback } from '@/components/CryptoCardFallback'
+import { LogoGrid } from '@/components/LogoGrid'
+import Search from '@/components/Search'
 import { Suspense } from 'react'
 
 export default function Home({
@@ -16,7 +16,7 @@ export default function Home({
         role='list'
         className='grid grid-cols-2 justify-items-center gap-4 min-[480px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7'
       >
-        <Suspense fallback={<CryptoCardSkeleton count={40} />}>
+        <Suspense fallback={<CryptoCardFallback count={40} />}>
           <LogoGrid search={searchParams?.search} />
         </Suspense>
       </ul>

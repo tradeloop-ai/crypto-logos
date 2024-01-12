@@ -1,10 +1,13 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
-export function CryptoCardSkeleton({ count }: { count: number }) {
+export function CryptoCardFallback({ count }: { count: number }) {
   return (
     <>
-      {Array(count).fill(
-        <div className='flex h-44 w-36 flex-col rounded-md border border-accent bg-white py-2 hover:border-muted-foreground dark:bg-black'>
+      {Array.from({ length: count }, (_, index) => (
+        <div
+          key={index}
+          className='flex h-44 w-36 flex-col rounded-md border border-accent bg-white py-2 hover:border-muted-foreground dark:bg-black'
+        >
           <Skeleton className='h-full w-full scale-y-110'></Skeleton>
           {/*<div className='flex basis-8/12 items-center justify-center'>*/}
           {/*  <div>*/}
@@ -18,7 +21,7 @@ export function CryptoCardSkeleton({ count }: { count: number }) {
           {/*  </div>*/}
           {/*</div>*/}
         </div>
-      )}
+      ))}
     </>
   )
 }

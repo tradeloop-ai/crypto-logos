@@ -1,8 +1,8 @@
-import InfiniteScroll from '@/app/InfiniteScroll'
+import { InfiniteScroll } from '@/components/InfiniteScroll'
 import { CMCMap } from '@/lib/types'
 import { createClient } from '@supabase/supabase-js'
 
-export default async function LogoGrid({ search }: { search?: string }) {
+export async function LogoGrid({ search }: { search?: string }) {
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
 
   let query
