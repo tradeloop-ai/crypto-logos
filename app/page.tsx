@@ -1,5 +1,6 @@
 import Search from '@/app/Search'
 import { createClient } from '@supabase/supabase-js'
+import { unstable_cache } from 'next/cache'
 import Image from 'next/image'
 
 type CMCMap = {
@@ -27,11 +28,20 @@ export default async function Home({
 }) {
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
 
-  const { data: cmc } = await supabase
-    .from('cmc_map')
-    .select('id,rank,name,symbol')
-    .limit(100)
-    .returns<CMCMap[]>()
+  const get_cmc_map = unstable_cache(
+    async () => {
+      const { data } = await supabase
+        .from('cmc_map')
+        .select('id,rank,name,symbol')
+        .returns<CMCMap[]>()
+      console.log('fetched cmc_map')
+      return data
+    },
+    ['cmc_map'],
+    { revalidate: 86400 }
+  )
+
+  const cmc = await get_cmc_map()
 
   const filteredCmc = cmc?.filter(
     (coin) =>
