@@ -6,9 +6,11 @@ export default function Home() {
   return (
     <div className='p-2 lg:p-3 xl:p-4'>
       <div className='flex w-full items-center justify-center pb-4'>
-        <Search />
+        <Suspense fallback={<p>Loading Search...</p>}>
+          <Search />
+        </Suspense>
       </div>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<p>Loading Logos...</p>}>
         <LogoGrid />
       </Suspense>
     </div>
