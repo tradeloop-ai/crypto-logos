@@ -1,6 +1,7 @@
 import { CMCMap } from '@/lib/types'
 import { createClient } from '@supabase/supabase-js'
 // import { unstable_cache } from 'next/cache'
+import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
 
 export default async function LogoGrid({
@@ -8,6 +9,8 @@ export default async function LogoGrid({
 }: {
   searchParams?: { query?: string; page?: string }
 }) {
+  noStore()
+
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
 
   // const get_cmc_map = unstable_cache(
