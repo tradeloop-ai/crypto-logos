@@ -25,17 +25,13 @@ export default async function Home({
 }: {
   searchParams?: { query?: string; page?: string }
 }) {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
 
   const { data: cmc } = await supabase
     .from('cmc_map')
     .select('id,rank,name,symbol')
+    .limit(100)
     .returns<CMCMap[]>()
-
-  console.log(searchParams?.query)
 
   const filteredCmc = cmc?.filter(
     (coin) =>
@@ -45,18 +41,18 @@ export default async function Home({
   )
 
   return (
-    <div className='p-4 px-24'>
+    <div className='p-2 lg:p-3 xl:p-4'>
       <div className='flex w-full items-center justify-center pb-4'>
         <Search />
       </div>
-      <div className='grid grid-cols-7 justify-items-center gap-4'>
+      <div className='grid grid-cols-2 justify-items-center gap-4 min-[480px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7'>
         {filteredCmc
           ?.sort((a, b) => a.rank - b.rank)
           ?.map((coin) => {
             return (
               <div
                 key={coin.id}
-                className='flex h-44 w-36 flex-col rounded-md border border-accent bg-white py-2 dark:bg-black'
+                className='flex h-44 w-36 flex-col rounded-md border border-accent bg-white py-2 hover:border-muted-foreground dark:bg-black'
               >
                 <div className='flex basis-8/12 items-center justify-center'>
                   <div>
