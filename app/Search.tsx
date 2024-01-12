@@ -1,28 +1,25 @@
 'use client'
 
 import { Input } from '@/components/ui/input'
-// import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-export default function Search({ className }: { className?: string }) {
+export default function Search() {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()
 
-  function handleSearch(query: string) {
+  function handleSearch(search: string) {
     const params = new URLSearchParams(searchParams)
-    if (query) {
-      params.set('query', query)
+    if (search) {
+      params.set('search', search)
     } else {
-      params.delete('query')
+      params.delete('search')
     }
     replace(`${pathname}?${params.toString()}`)
   }
 
   return (
-    <div className={cn('grid w-full max-w-sm items-center gap-1.5', className)}>
-      {/*<Label htmlFor='symbol'>Search</Label>*/}
+    <div className='flex w-full items-center justify-center pb-4'>
       <Input
         type='text'
         id='symbol'
@@ -30,7 +27,8 @@ export default function Search({ className }: { className?: string }) {
         onChange={(e) => {
           handleSearch(e.target.value)
         }}
-        defaultValue={searchParams.get('query')?.toString()}
+        defaultValue={searchParams.get('search')?.toString()}
+        className='w-full max-w-sm'
       />
     </div>
   )
