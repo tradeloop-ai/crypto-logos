@@ -8,24 +8,32 @@ export default async function LogoGrid({
 }: {
   searchParams?: { query?: string; page?: string }
 }) {
+  unstable_noStore()
+
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
 
-  unstable_noStore()
   const get_cmc_map = unstable_cache(
     async () => {
       const { data } = await supabase
         .from('cmc_map')
         .select('id,rank,name,symbol')
-        // .limit(100)
+        .limit(100)
         .returns<CMCMap[]>()
       console.log('fetched cmc_map')
       return data
     },
     ['cmc_map'],
-    { revalidate: 86400 }
+    { revalidate: 60 }
   )
 
   const cmc = await get_cmc_map()
+
+  // const { data: cmc } = await supabase
+  //   .from('cmc_map')
+  //   .select('id,rank,name,symbol')
+  //   .limit(100)
+  //   .returns<CMCMap[]>()
+  // console.log('fetched cmc_map')
 
   const filteredCmc = cmc?.filter(
     (coin) =>
