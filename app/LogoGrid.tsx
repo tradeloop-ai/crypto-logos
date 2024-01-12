@@ -51,6 +51,7 @@ export default async function LogoGrid({
                     width={50}
                     height={50}
                     alt=''
+                    unoptimized
                   />
                 </div>
               </div>
