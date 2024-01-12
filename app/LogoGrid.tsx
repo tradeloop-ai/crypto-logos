@@ -1,6 +1,6 @@
 import { CMCMap } from '@/lib/types'
 import { createClient } from '@supabase/supabase-js'
-import { unstable_cache } from 'next/cache'
+// import { unstable_cache } from 'next/cache'
 import Image from 'next/image'
 
 export default async function LogoGrid({
@@ -10,21 +10,28 @@ export default async function LogoGrid({
 }) {
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
 
-  const get_cmc_map = unstable_cache(
-    async () => {
-      const { data } = await supabase
-        .from('cmc_map')
-        .select('id,rank,name,symbol')
-        .limit(100)
-        .returns<CMCMap[]>()
-      console.log('fetched cmc_map')
-      return data
-    },
-    ['cmc_map'],
-    { revalidate: 86400 }
-  )
+  // const get_cmc_map = unstable_cache(
+  //   async () => {
+  //     const { data } = await supabase
+  //       .from('cmc_map')
+  //       .select('id,rank,name,symbol')
+  //       .limit(100)
+  //       .returns<CMCMap[]>()
+  //     console.log('fetched cmc_map')
+  //     return data
+  //   },
+  //   ['cmc_map'],
+  //   { revalidate: 86400 }
+  // )
+  //
+  // const cmc = await get_cmc_map()
 
-  const cmc = await get_cmc_map()
+  const { data: cmc } = await supabase
+    .from('cmc_map')
+    .select('id,rank,name,symbol')
+    .limit(100)
+    .returns<CMCMap[]>()
+  console.log('fetched cmc_map')
 
   const filteredCmc = cmc?.filter(
     (coin) =>
