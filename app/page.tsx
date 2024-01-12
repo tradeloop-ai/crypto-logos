@@ -3,8 +3,6 @@ import { createClient } from '@supabase/supabase-js'
 import { unstable_cache } from 'next/cache'
 import Image from 'next/image'
 
-export const runtime = 'edge'
-
 type CMCMap = {
   id: number
   rank: number
