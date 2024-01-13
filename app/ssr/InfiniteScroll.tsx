@@ -5,7 +5,7 @@ import { CryptoCardFallback } from '@/components/CryptoCardFallback'
 import { Skeleton } from '@/components/ui/skeleton'
 import { CMCMap } from '@/lib/types'
 import { createClient } from '@supabase/supabase-js'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 export function InfiniteScroll({
@@ -22,7 +22,7 @@ export function InfiniteScroll({
 
   let prevSearch = useRef<string | undefined>(undefined)
 
-  async function loadMoreCMC() {
+  const loadMoreCMC = useCallback(async () => {
     const next = page + 1
     const rangeLow = 20 + page * 20
     const rangeHigh = 20 + next * 20
@@ -83,7 +83,7 @@ export function InfiniteScroll({
       console.log('InfiniteScroll', `End of page, ${nextCMC?.length} final fetched`)
       setFetchMore(false)
     }
-  }
+  }, [fetchMore, page, search])
 
   useEffect(() => {
     if (inView) loadMoreCMC().then()
