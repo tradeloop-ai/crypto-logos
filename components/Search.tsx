@@ -23,7 +23,7 @@ export function Search({ className }: { className?: string }) {
     <div className={cn('flex w-full items-center justify-center pb-4', className)}>
       <Input
         type='text'
-        id='symbol'
+        id='search'
         placeholder='Search by name or symbol'
         onChange={(e) => {
           handleSearch(e.target.value)
