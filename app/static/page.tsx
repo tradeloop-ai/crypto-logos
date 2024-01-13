@@ -13,7 +13,6 @@ export default function Static() {
           <Search className={'fixed top-4 pb-0'} />
         </Suspense>
       </div>
-      <StaticVirtualGridFallback />
       <Suspense fallback={<StaticVirtualGridFallback />}>
         <VirtualGrid CMC={CMC} />
       </Suspense>
