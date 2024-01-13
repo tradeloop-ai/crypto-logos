@@ -18,11 +18,11 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
   }
 
   const getWidth = (width: number) => {
-    if (width >= 1280) return 135 * 8 + 48 * 2 // xl:px-12
-    else if (width >= 1024) return 135 * 6 + 40 * 2 // lg:px-10
-    else if (width >= 768) return 135 * 5 + 32 * 2 // md:px-8
-    else if (width >= 640) return 135 * 4 + 24 * 2 // sm:px-6
-    else if (width >= 480) return 135 * 3 + 20 * 2 // min-[480px]:px-5
+    if (width >= 1280) return 135 * 8 + 48 * 2 + 20 // xl:px-12
+    else if (width >= 1024) return 135 * 6 + 40 * 2 + 20 // lg:px-10
+    else if (width >= 768) return 135 * 5 + 32 * 2 + 20 // md:px-8
+    else if (width >= 640) return 135 * 4 + 24 * 2 + 20 // sm:px-6
+    else if (width >= 480) return 135 * 3 + 20 * 2 + 20 // min-[480px]:px-5
     return 135 * 2 + 16 * 2 // px-4
   }
 
@@ -68,7 +68,8 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
       if (!item) return <div style={style}></div>
 
       return (
-        <div style={style} className='flex items-center justify-center px-[10px]'>
+        // px-[10px]
+        <div style={style} className='flex items-center justify-center'>
           <CryptoCard key={item.id} crypto={item} />
         </div>
       )

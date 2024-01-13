@@ -1,4 +1,4 @@
-import { CryptoCardFallback } from '@/components/CryptoCardFallback'
+import { StaticVirtualGridFallback } from '@/app/static/StaticVirtualGridFallback'
 import { Search } from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGrid } from '@/components/VirtualGrid'
@@ -13,7 +13,8 @@ export default function Static() {
           <Search className={'fixed top-4 pb-0'} />
         </Suspense>
       </div>
-      <Suspense fallback={<CryptoCardFallback count={32} />}>
+      <StaticVirtualGridFallback />
+      <Suspense fallback={<StaticVirtualGridFallback />}>
         <VirtualGrid CMC={CMC} />
       </Suspense>
     </div>
