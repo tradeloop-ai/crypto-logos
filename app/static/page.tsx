@@ -1,7 +1,7 @@
-import { StaticVirtualGridFallback } from '@/app/static/StaticVirtualGridFallback'
 import { Search } from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGrid } from '@/components/VirtualGrid'
+import { VirtualGridFallback } from '@/components/VirtualGridFallback'
 import { CMC } from '@/lib/CMC'
 import { Suspense } from 'react'
 
@@ -13,7 +13,7 @@ export default function Static() {
           <Search className={'fixed top-4 pb-0'} />
         </Suspense>
       </div>
-      <Suspense fallback={<StaticVirtualGridFallback />}>
+      <Suspense fallback={<VirtualGridFallback />}>
         <VirtualGrid CMC={CMC} />
       </Suspense>
     </div>

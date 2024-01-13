@@ -1,6 +1,6 @@
 import { CryptoCardFallback } from '@/components/CryptoCardFallback'
 
-export function StaticVirtualGridFallback() {
+export function VirtualGridFallback() {
   return (
     <div className='flex items-center justify-center pt-[74px]'>
       <ul
