@@ -6,7 +6,7 @@ export function CryptoCardFallback({ count }: { count: number }) {
       {Array.from({ length: count }, (_, index) => (
         <div
           key={index}
-          className='flex h-44 w-36 flex-col rounded-md border border-accent bg-white py-2 hover:border-muted-foreground dark:bg-black'
+          className='flex h-[160px] w-[135px] flex-col rounded-md border border-accent bg-white py-2 hover:border-muted-foreground dark:bg-black'
         >
           <Skeleton className='h-full w-full scale-y-110'></Skeleton>
           {/*<div className='flex basis-8/12 items-center justify-center'>*/}

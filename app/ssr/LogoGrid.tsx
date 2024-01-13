@@ -1,4 +1,4 @@
-import { InfiniteScroll } from '@/components/InfiniteScroll'
+import { InfiniteScroll } from '@/app/ssr/InfiniteScroll'
 import { CMCMap } from '@/lib/types'
 import { createClient } from '@supabase/supabase-js'
 

@@ -1,10 +1,9 @@
+import { CMCGrid } from '@/app/ppr/CMCGrid'
 import Search from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
-import { VirtualGrid } from '@/components/VirtualGrid'
-import { CMC } from '@/lib/CMC'
 import { Suspense } from 'react'
 
-export default function Static() {
+export default function PPR() {
   return (
     <div>
       <div className='fixed z-50 h-16 w-full bg-transparent backdrop-blur-lg'>
@@ -12,7 +11,9 @@ export default function Static() {
           <Search className={'fixed top-4 pb-0'} />
         </Suspense>
       </div>
-      <VirtualGrid CMC={CMC} />
+      <Suspense fallback={<p>Suspense...</p>}>
+        <CMCGrid />
+      </Suspense>
     </div>
   )
 }

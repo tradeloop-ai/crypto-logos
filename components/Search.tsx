@@ -1,9 +1,10 @@
 'use client'
 
 import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-export default function Search() {
+export default function Search({ className }: { className?: string }) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()
@@ -19,7 +20,7 @@ export default function Search() {
   }
 
   return (
-    <div className='flex w-full items-center justify-center pb-4'>
+    <div className={cn('flex w-full items-center justify-center pb-4', className)}>
       <Input
         type='text'
         id='symbol'

@@ -87,7 +87,7 @@ export function InfiniteScroll({
 
   useEffect(() => {
     if (inView) loadMoreCMC().then()
-  }, [inView])
+  }, [inView, loadMoreCMC])
 
   return (
     <>
