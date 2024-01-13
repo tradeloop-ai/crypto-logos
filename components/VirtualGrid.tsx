@@ -27,9 +27,9 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
   }
 
   const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: getWidth(window.innerWidth),
-    columnCount: getColumns(window.innerWidth)
+    height: 1280,
+    width: getWidth(1280),
+    columnCount: getColumns(1280)
   })
 
   // Handle resize
@@ -77,7 +77,6 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
   // Process the data (apply search filter, sorting, etc.)
   const searchParams = useSearchParams()
   const search = searchParams.get('search') as string | null
-  console.log(search)
   const processedData = CMC.filter(
     (coin) =>
       search === null ||
