@@ -1,4 +1,4 @@
-import { Search } from '@/app/static/Search'
+import Search from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGrid } from '@/components/VirtualGrid'
 import { CMC } from '@/lib/CMC'
@@ -8,9 +8,9 @@ export default function Static() {
   return (
     <div>
       <div className='fixed z-50 h-16 w-full bg-transparent backdrop-blur-lg'>
-        <Suspense fallback={<SearchFallback />}>
-          <Search />
-        </Suspense>
+        {/*<Suspense fallback={<p>Loading Search</p>}>*/}
+        <Search className={'fixed top-4 pb-0'} />
+        {/*</Suspense>*/}
       </div>
       <VirtualGrid CMC={CMC} />
     </div>
