@@ -27,9 +27,9 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
   }
 
   const [dimensions, setDimensions] = useState({
-    height: 1280,
-    width: getWidth(1280),
-    columnCount: getColumns(1280)
+    height: 0,
+    width: 0,
+    columnCount: 0
   })
 
   // Handle resize
@@ -41,6 +41,8 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
         columnCount: getColumns(window.innerWidth)
       })
     }
+
+    handleResize()
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -105,6 +107,7 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
             outerRef={outerRef as Ref<FixedSizeGrid> | undefined}
             style={style as CSSProperties | undefined}
             onScroll={onScroll as ((props: GridOnScrollProps) => any) | undefined}
+            className=''
           >
             {MemoizedCell}
           </FixedSizeGrid>

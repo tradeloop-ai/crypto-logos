@@ -1,6 +1,6 @@
 import { LogoGrid } from '@/app/ssr/LogoGrid'
 import { CryptoCardFallback } from '@/components/CryptoCardFallback'
-import Search from '@/components/Search'
+import { Search } from '@/components/Search'
 import { Suspense } from 'react'
 
 export default function Home({
