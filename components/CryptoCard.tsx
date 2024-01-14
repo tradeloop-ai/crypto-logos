@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import {
   ContextMenu,
   ContextMenuContent,
@@ -8,15 +7,12 @@ import {
   ContextMenuTrigger
 } from '@/components/ui/context-menu'
 import { CMCMap } from '@/lib/types'
-import { DownloadIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 
 export function CryptoCard({ crypto }: { crypto: CMCMap }) {
-  const handleDownload = async () => {
+  async function handleDownload() {
     try {
-      const response = await fetch(
-        `https://s2.coinmarketcap.com/static/img/coins/128x128/${crypto?.id}.png`
-      )
+      const response = await fetch(`/api/getLogo?id=${crypto.id}`)
       const blob = await response.blob()
       const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
