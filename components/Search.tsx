@@ -20,17 +20,15 @@ export function Search({ className }: { className?: string }) {
   }
 
   return (
-    <div className={cn('flex w-full items-center justify-center pb-4', className)}>
-      <Input
-        type='text'
-        id='search'
-        placeholder='Search by name or symbol'
-        onChange={(e) => {
-          handleSearch(e.target.value)
-        }}
-        defaultValue={searchParams.get('search')?.toString()}
-        className='w-full max-w-sm'
-      />
-    </div>
+    <Input
+      type='text'
+      id='search'
+      placeholder='Search by name or symbol'
+      onChange={(e) => {
+        handleSearch(e.target.value)
+      }}
+      defaultValue={searchParams.get('search')?.toString()}
+      className={cn('w-full max-w-sm', className)}
+    />
   )
 }
