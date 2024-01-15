@@ -12,7 +12,7 @@ Add crypto logos to your application by either downloading from 9000+ logos usin
 - Powered by Vercel Functions, Postgres, KV.
 - No authentication or API keys, instead a very generous rate limit of 30 requests per minute is imposed based on IP. Please open an issue to request an increase.
 - Support POST requests with parameters for customized logo PNGs.
-- Check out the API Docs for more info.
+- Check out the [API Docs](https://github.com/0x-Legend/crypto-logos/blob/c35e0141730f32ac4d9768d7ff56ec8ed58721d5/app/api/README.md) for more info.
 
 ## Future
 - SVG & JSX versions will be added progressively. 
