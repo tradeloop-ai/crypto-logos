@@ -1,4 +1,4 @@
-import { CMCGrid } from '@/app/ppr/CMCGrid'
+import { Grid } from '@/components/Grid'
 import { Search } from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGridFallback } from '@/components/VirtualGridFallback'
@@ -13,7 +13,7 @@ export default function Page() {
         </Suspense>
       </div>
       <Suspense fallback={<VirtualGridFallback />}>
-        <CMCGrid />
+        <Grid />
       </Suspense>
     </div>
   )
