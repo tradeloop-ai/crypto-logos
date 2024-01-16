@@ -8,7 +8,11 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Crypto Logos - A Comprehensive Cryptocurrency Logo Collection',
   description:
-    'Access a vast collection of over 9000 cryptocurrency logos in PNG format through the Crypto Logos API, powered by CoinMarketCap data. Easily integrate these logos into your applications for a visually engaging crypto experience.'
+    'Access a vast collection of over 9000 cryptocurrency logos in PNG format through the Crypto Logos API, powered by CoinMarketCap data. Easily integrate these logos into your applications for a visually engaging crypto experience.',
+  metadataBase: new URL('https://logos.tradeloop.app'),
+  openGraph: {
+    images: '/opengraph-image.png'
+  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
