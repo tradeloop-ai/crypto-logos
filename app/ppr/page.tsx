@@ -2,6 +2,8 @@ import { PPRGrid } from '@/app/ppr/PPRGrid'
 import { Search } from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGridFallback } from '@/components/VirtualGridFallback'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import { Suspense } from 'react'
 
 export default function PPR() {
@@ -11,6 +13,9 @@ export default function PPR() {
         <Suspense fallback={<SearchFallback />}>
           <Search />
         </Suspense>
+        <Link href={'/api/playground'}>
+          <Button className='ml-4'>API</Button>
+        </Link>
       </div>
       <Suspense fallback={<VirtualGridFallback />}>
         <PPRGrid />

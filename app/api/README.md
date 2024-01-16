@@ -1,4 +1,5 @@
 # API Documentation
+Try the [API Playground](https://cryptologos.vercel.app/api/playground)
 
 ## Endpoint: `/api/logos`
 

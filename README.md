@@ -13,7 +13,7 @@ An abstraction built from the actively maintained database of cryptocurrencies b
 - No authentication or API keys, just a 30 reqs/min rate-limit based on IP. 
   - Please open an issue to request an increase.
 - Support POST requests with parameters to customize logo output.
-- View the [API Docs](https://github.com/0x-Legend/crypto-logos/blob/c35e0141730f32ac4d9768d7ff56ec8ed58721d5/app/api/README.md) for more info.
+- View the [API Docs](https://github.com/0x-Legend/crypto-logos/blob/c35e0141730f32ac4d9768d7ff56ec8ed58721d5/app/api/README.md) or try the [API Playground](https://cryptologos.vercel.app/api/playground) for more info.
 
 ## Future
 - SVG & JSX versions will be added progressively.
