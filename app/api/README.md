@@ -9,21 +9,28 @@ This endpoint provides functionality to fetch logo information for cryptocurrenc
 #### Request Body
 
 - **symbols** (required, array of strings): The cryptocurrency symbols for which to fetch logo information. This field is mandatory.
+- **resolution** (optional, string): Choose from either `'16'`, `'32'`, `'64'`, or `'128'`. Default is `'64'`.
 - **mode** (optional, string): Determines the response format. Can be either `'single'` or `'multiple'`. Default is `'single'`.
     - `'single'`: Returns the most probable logo for each symbol based on popularity.
-    - `'multiple'`: Returns all logos found for the symbols.
+    - `'multiple'`: Returns all logos found for each symbol.
 - **parser** (optional, object): Contains parsing options for symbols. If not provided, parsing is enabled by default with the option to remove numbers.
     - **enable** (boolean): Whether to enable parsing. Default is `true`.
     - **options** (object):
-        - **removeNumbers** (boolean): Whether to remove numbers from symbols. Default is `true`. 
+        - **removeNumbers** (boolean): Whether to remove the lot/bundle size indicator from symbols. Default is `true`. 
           - `1000PEPEUSDT --> PEPE`
           - `ZEUS10000USDT --> ZEUS`
+          - `1INCHUSDT --> 1INCH`
 
 ##### Example Request Body
 
 ```json
 {
-  "symbols": ["BTCUSDT", "ETH", "1000PEPE"],
+  "symbols": [
+    "BTCUSDT",
+    "ETH",
+    "1000PEPE"
+  ],
+  "resolution": "64",
   "mode": "single",
   "parser": {
     "enable": true,
@@ -34,9 +41,9 @@ This endpoint provides functionality to fetch logo information for cryptocurrenc
 }
 ```
 
-#### Response
-- The response is a JSON array of objects.
-- Each object contains id, rank, and symbol of a cryptocurrency.
+### Responses
+
+The response is a JSON array of objects. Each object contains png, rank, symbol, and name of a cryptocurrency.
 
 #### Success Response
 - Status Code: 200 OK
@@ -45,19 +52,22 @@ This endpoint provides functionality to fetch logo information for cryptocurrenc
 ```json
 [
   {
-    "id": 1,
+    "png": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png",
     "rank": 1,
-    "symbol": "BTC"
+    "symbol": "BTC",
+    "name": "Bitcoin"
   },
   {
-    "id": 1027,
+    "id": "https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png",
     "rank": 2,
-    "symbol": "ETH"
+    "symbol": "ETH",
+    "name": "Ethereum"
   },
   {
-    "id": 24478,
+    "id": "https://s2.coinmarketcap.com/static/img/coins/64x64/24478.png",
     "rank": 110,
-    "symbol": "PEPE"
+    "symbol": "PEPE",
+    "name": "Pepe"
   }
 ]
 ```
@@ -76,8 +86,9 @@ This endpoint provides functionality to fetch logo information for cryptocurrenc
 #### Types 
 ```typescript
 interface Crypto {
-  id: number;
+  png: string;
   rank: number;
   symbol: string;
+  name: string
 }
 ```

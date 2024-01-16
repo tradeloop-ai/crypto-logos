@@ -21,6 +21,11 @@ export async function POST(request: NextRequest) {
   // symbols
   const symbols = body.symbols as string[]
 
+  // resolution
+  let resolution = body.resolution as '16' | '32' | '64' | '128'
+  if (resolution !== '16' && resolution !== '32' && resolution !== '64' && resolution !== '128') {
+    resolution = '64'
+  }
   // mode
   let mode = body.mode as 'single' | 'multiple' | undefined
   // handle no symbols in request body error
@@ -57,20 +62,29 @@ export async function POST(request: NextRequest) {
 
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
 
-  const { data: coinLogos } = await supabase
+  const { data } = await supabase
     .from('cmc_map')
-    .select('id,rank,symbol')
+    .select('id,rank,symbol,name')
     .in('symbol', parser.enable ? parsedSymbols : symbols)
-    .returns<Crypto[]>()
+    .returns<Data[]>()
 
-  if (!coinLogos)
+  if (!data)
     return NextResponse.json([], { status: 400, statusText: 'An unexpected error occurred' })
 
-  if (coinLogos.length === 0)
-    return NextResponse.json(coinLogos, {
+  if (data.length === 0)
+    return NextResponse.json(data, {
       status: 201,
       statusText: 'No logos found'
     })
+
+  const coinLogos = data.map((coin) => {
+    return {
+      png: `https://s2.coinmarketcap.com/static/img/coins/${resolution}x${resolution}/${coin.id}.png`,
+      rank: coin.rank,
+      symbol: coin.symbol,
+      name: coin.name
+    }
+  })
 
   if (mode === 'multiple') {
     return NextResponse.json(coinLogos, {
@@ -96,7 +110,15 @@ export async function POST(request: NextRequest) {
 }
 
 interface Crypto {
+  png: string
+  rank: number
+  symbol: string
+  name: string
+}
+
+interface Data {
   id: number
   rank: number
   symbol: string
+  name: string
 }

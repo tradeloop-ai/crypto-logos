@@ -3,7 +3,7 @@ import { CMCMap } from '@/lib/types'
 import { sql } from '@vercel/postgres'
 import { unstable_cache } from 'next/cache'
 
-export async function Grid() {
+export async function ISRGrid() {
   const cache = unstable_cache(
     async () => {
       console.log('cache invalidated')

@@ -1,4 +1,4 @@
-import { Grid } from '@/components/Grid'
+import { ISRGrid } from '@/components/ISRGrid'
 import { Search } from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGridFallback } from '@/components/VirtualGridFallback'
@@ -13,7 +13,7 @@ export default function Page() {
         </Suspense>
       </div>
       <Suspense fallback={<VirtualGridFallback />}>
-        <Grid />
+        <ISRGrid />
       </Suspense>
     </div>
   )

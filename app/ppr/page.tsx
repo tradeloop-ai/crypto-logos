@@ -1,4 +1,4 @@
-import { CMCGrid } from '@/app/ppr/CMCGrid'
+import { PPRGrid } from '@/app/ppr/PPRGrid'
 import { Search } from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGridFallback } from '@/components/VirtualGridFallback'
@@ -13,7 +13,7 @@ export default function PPR() {
         </Suspense>
       </div>
       <Suspense fallback={<VirtualGridFallback />}>
-        <CMCGrid />
+        <PPRGrid />
       </Suspense>
     </div>
   )
