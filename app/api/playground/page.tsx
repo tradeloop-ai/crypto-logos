@@ -51,7 +51,6 @@ export default function Test() {
       return
     }
     const json = await response.json()
-    // console.log(`/api/logos (${new Date().toLocaleTimeString()})`, json)
     toast('Check console for output')
     setResponse(json)
   }

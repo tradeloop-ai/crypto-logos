@@ -13,7 +13,6 @@ export async function GET(request: NextRequest) {
   const cmc = json.data as CMCMap[]
 
   const delete_query = await sql.query(`DELETE FROM public.cmc`)
-  console.log('delete_query', delete_query)
 
   const insert_query = await sql.query(
     `INSERT INTO public.cmc (id, rank, name, symbol, slug, is_active, first_historical_data, last_historical_data, platform)
@@ -21,7 +20,6 @@ export async function GET(request: NextRequest) {
      FROM json_populate_recordset(NULL::public.cmc, $1)`,
     [JSON.stringify(cmc)]
   )
-  console.log('insert_query', insert_query)
 
   return NextResponse.json(
     {
