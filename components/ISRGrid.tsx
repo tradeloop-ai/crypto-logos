@@ -6,11 +6,11 @@ import { unstable_cache } from 'next/cache'
 export async function ISRGrid() {
   const cache = unstable_cache(
     async () => {
-      console.log('cache invalidated')
+      console.log('CMC cache revalidated')
       return await sql.query(`SELECT id, rank, symbol, name FROM public.cmc ORDER BY rank`)
     },
-    [],
-    { revalidate: 604800 }
+    ['cmc'],
+    { tags: ['cmc'], revalidate: 604800 }
   )
 
   const result = await cache()

@@ -1,7 +1,7 @@
 # API Documentation
 Try the [API Playground](https://cryptologos.vercel.app/api/playground)
 
-## Endpoint: `/api/logos`
+## Endpoint: `/api/getLogos`
 
 This endpoint provides functionality to fetch logo information for cryptocurrency symbols. It supports different modes and offers optional parsing of symbols.
 

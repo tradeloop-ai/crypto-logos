@@ -6,8 +6,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Logos',
-  description: 'An abstraction built from CMC'
+  title: 'Crypto Logos - A Comprehensive Cryptocurrency Logo Collection',
+  description:
+    'Access a vast collection of over 9000 cryptocurrency logos in PNG format through the Crypto Logos API, powered by CoinMarketCap data. Easily integrate these logos into your applications for a visually engaging crypto experience.'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

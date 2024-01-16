@@ -1,4 +1,4 @@
-import { PPRGrid } from '@/app/ppr/PPRGrid'
+import { PPRGrid } from '@/components/PPRGrid'
 import { Search } from '@/components/Search'
 import { SearchFallback } from '@/components/SearchFallback'
 import { VirtualGridFallback } from '@/components/VirtualGridFallback'

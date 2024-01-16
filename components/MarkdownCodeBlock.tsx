@@ -55,7 +55,7 @@ export const generateRandomString = (length: number, lowercase = false) => {
   return lowercase ? result.toLowerCase() : result
 }
 
-const MarkdownCodeblock: FC<Props> = memo(({ language, value }) => {
+const MarkdownCodeBlock: FC<Props> = memo(({ language, value }) => {
   const { isCopied, copyToClipboard } = useCopyToClipboard({
     timeout: 2000
   })
@@ -138,9 +138,9 @@ const MarkdownCodeblock: FC<Props> = memo(({ language, value }) => {
     </div>
   )
 })
-MarkdownCodeblock.displayName = 'CodeBlock'
+MarkdownCodeBlock.displayName = 'CodeBlock'
 
-export { MarkdownCodeblock }
+export { MarkdownCodeBlock }
 
 function useCopyToClipboard({ timeout = 2000 }: { timeout: number }) {
   const [isCopied, setIsCopied] = useState<Boolean>(false)

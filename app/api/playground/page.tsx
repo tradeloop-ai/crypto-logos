@@ -1,6 +1,6 @@
 'use client'
 
-import { MarkdownCodeblock } from '@/components/markdown-codeblock'
+import { MarkdownCodeBlock } from '@/components/MarkdownCodeBlock'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -29,7 +29,7 @@ export default function Test() {
       return
     }
     const capitalizedParsedSymbols = parsedSymbols.map((symbol) => symbol.toUpperCase())
-    const response = await fetch('/api/logos', {
+    const response = await fetch('/api/getLogos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export default function Test() {
     setResponse(json)
   }
 
-  const code = `const response = await fetch('/api/logos', {
+  const code = `const response = await fetch('/api/getLogos', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ const json = await response.json()`
       <div className='flex w-full flex-col items-center justify-center space-y-4 p-12 lg:flex-row lg:space-x-12 lg:space-y-0'>
         {/* Code Block */}
         <div className='flex basis-1/2'>
-          <MarkdownCodeblock language={'jsx'} value={code} />
+          <MarkdownCodeBlock language={'jsx'} value={code} />
         </div>
 
         <div className='flex basis-1/2 flex-col space-y-4'>
@@ -223,7 +223,7 @@ const json = await response.json()`
       </div>
 
       <div className='px-12 pb-12'>
-        <MarkdownCodeblock language={'json'} value={JSON.stringify(response, null, 2)} />
+        <MarkdownCodeBlock language={'json'} value={JSON.stringify(response, null, 2)} />
       </div>
     </div>
   )

@@ -12,7 +12,7 @@ import Image from 'next/image'
 export function CryptoCard({ crypto }: { crypto: CMCMap }) {
   async function handleDownload() {
     try {
-      const response = await fetch(`/api/getLogo?id=${crypto.id}`)
+      const response = await fetch(`/api/downloadLogo?id=${crypto.id}`)
       const blob = await response.blob()
       const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
