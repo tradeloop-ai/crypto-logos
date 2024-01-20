@@ -1,7 +1,7 @@
 import { getSymbol } from '@/lib/utils'
-import { createClient } from '@supabase/supabase-js'
 import { Ratelimit } from '@upstash/ratelimit'
 import { kv } from '@vercel/kv'
+import { sql } from '@vercel/postgres'
 import { NextRequest, NextResponse } from 'next/server'
 
 const ratelimit = new Ratelimit({
@@ -60,13 +60,14 @@ export async function POST(request: NextRequest) {
     })
   }
 
-  const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
+  // Prepare the query
+  let symbolList = parser.enable ? parsedSymbols : symbols
+  let placeholders = symbolList.map((_, index) => `$${index + 1}`).join(',')
+  let query = `SELECT id, rank, symbol, name FROM cmc WHERE symbol IN (${placeholders})`
 
-  const { data } = await supabase
-    .from('cmc_map')
-    .select('id,rank,symbol,name')
-    .in('symbol', parser.enable ? parsedSymbols : symbols)
-    .returns<Data[]>()
+  // Execute the query
+  const res = await sql.query(query, symbolList)
+  const data = res.rows as Data[]
 
   if (!data)
     return NextResponse.json([], { status: 400, statusText: 'An unexpected error occurred' })
@@ -80,7 +81,7 @@ export async function POST(request: NextRequest) {
   const coinLogos = data.map((coin) => {
     return {
       png: `https://s2.coinmarketcap.com/static/img/coins/${resolution}x${resolution}/${coin.id}.png`,
-      rank: coin.rank,
+      rank: Number(coin.rank),
       symbol: coin.symbol,
       name: coin.name
     }
