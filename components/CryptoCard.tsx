@@ -6,10 +6,10 @@ import {
   ContextMenuItem,
   ContextMenuTrigger
 } from '@/components/ui/context-menu'
-import { CMCMap } from '@/lib/types'
+import { CMC } from '@/lib/types'
 import Image from 'next/image'
 
-export function CryptoCard({ crypto }: { crypto: CMCMap }) {
+export function CryptoCard({ crypto }: { crypto: CMC }) {
   async function handleDownload() {
     try {
       const response = await fetch(`/api/downloadLogo?id=${crypto.id}`)

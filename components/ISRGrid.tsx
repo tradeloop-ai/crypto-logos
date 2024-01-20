@@ -1,5 +1,5 @@
 import { VirtualGrid } from '@/components/VirtualGrid'
-import { CMCMap } from '@/lib/types'
+import { CMC } from '@/lib/types'
 import { sql } from '@vercel/postgres'
 import { unstable_cache } from 'next/cache'
 
@@ -15,7 +15,7 @@ export async function ISRGrid() {
 
   const result = await cache()
 
-  const CMC = result.rows as CMCMap[] | null
+  const CMC = result.rows as CMC[] | null
 
   return <>{CMC && <VirtualGrid CMC={CMC || []} />}</>
 }

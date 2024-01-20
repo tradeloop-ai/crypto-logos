@@ -1,4 +1,4 @@
-import { CMCMap } from '@/lib/types'
+import { CMC } from '@/lib/types'
 import { sql } from '@vercel/postgres'
 import { NextResponse } from 'next/server'
 
@@ -11,7 +11,7 @@ export async function GET() {
     }
   })
   const json = await response.json()
-  const cmc = json.data as CMCMap[]
+  const cmc = json.data as CMC[]
 
   const delete_query = await sql.query(`DELETE FROM public.cmc`)
 

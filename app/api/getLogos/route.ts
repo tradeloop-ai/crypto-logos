@@ -1,3 +1,4 @@
+import { CMC, Crypto } from '@/lib/types'
 import { getSymbol } from '@/lib/utils'
 import { Ratelimit } from '@upstash/ratelimit'
 import { kv } from '@vercel/kv'
@@ -20,32 +21,30 @@ export async function POST(request: NextRequest) {
 
   // symbols
   const symbols = body.symbols as string[]
+  // handle no symbols in request body error
+  if (!symbols || symbols.length === 0)
+    return NextResponse.json([], { status: 400, statusText: 'No symbols requested' })
 
   // resolution
   let resolution = body.resolution as '16' | '32' | '64' | '128'
   if (resolution !== '16' && resolution !== '32' && resolution !== '64' && resolution !== '128') {
     resolution = '64'
   }
+
   // mode
   let mode = body.mode as 'single' | 'multiple' | undefined
-  // handle no symbols in request body error
-  if (!symbols || symbols.length === 0)
-    return NextResponse.json([], { status: 400, statusText: 'No symbols requested' })
-  // default mode = single
   if (mode === undefined) {
-    mode = 'single'
+    mode = 'single' // default mode = single
   }
 
   // parser
   let parser = body.parser as { enable: boolean; options: { removeNumbers: boolean } }
-  // default parser = enabled & remove numbers
   if (parser === undefined) {
-    parser = { enable: true, options: { removeNumbers: true } }
+    parser = { enable: true, options: { removeNumbers: true } } // default parser = enabled & remove numbers
   }
-  // default parser options = remove numbers
   if (
     parser.enable &&
-    (parser?.options === undefined || parser?.options?.removeNumbers === undefined)
+    (parser?.options === undefined || parser?.options?.removeNumbers === undefined) // default parser options = remove numbers
   ) {
     parser = { enable: true, options: { removeNumbers: true } }
   }
@@ -67,7 +66,7 @@ export async function POST(request: NextRequest) {
 
   // Execute the query
   const res = await sql.query(query, symbolList)
-  const data = res.rows as Data[]
+  const data = res.rows as CMC[]
 
   if (!data)
     return NextResponse.json([], { status: 400, statusText: 'An unexpected error occurred' })
@@ -108,18 +107,4 @@ export async function POST(request: NextRequest) {
     status: 200,
     statusText: `${singleCoinLogos.length} logos found`
   })
-}
-
-interface Crypto {
-  png: string
-  rank: number
-  symbol: string
-  name: string
-}
-
-interface Data {
-  id: number
-  rank: number
-  symbol: string
-  name: string
 }

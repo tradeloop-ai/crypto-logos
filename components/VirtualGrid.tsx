@@ -2,13 +2,13 @@
 
 import { CryptoCard } from '@/components/CryptoCard'
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery'
-import { CMCMap } from '@/lib/types'
+import { CMC } from '@/lib/types'
 import { useSearchParams } from 'next/navigation'
 import { CSSProperties, memo, Ref, useCallback, useEffect, useState } from 'react'
 import { FixedSizeGrid, GridOnScrollProps } from 'react-window'
 import { ReactWindowScroller as WindowScroller } from 'react-window-scroller'
 
-export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
+export function VirtualGrid({ CMC }: { CMC: CMC[] }) {
   const xl = useMediaQuery('(min-width: 1280px)')
   const lg = useMediaQuery('(min-width: 1024px)')
   const md = useMediaQuery('(min-width: 768px)')
@@ -17,20 +17,28 @@ export function VirtualGrid({ CMC }: { CMC: CMCMap[] }) {
 
   const width = useCallback(() => {
     // if (typeof window === 'undefined') return 0
-    if (xl) return 135 * 8 + 48 * 2 + 20 // xl:px-12
-    else if (lg) return 135 * 6 + 40 * 2 + 20 // lg:px-10
-    else if (md) return 135 * 5 + 32 * 2 + 20 // md:px-8
-    else if (sm) return 135 * 4 + 24 * 2 + 20 // sm:px-6
+    if (xl)
+      return 135 * 8 + 48 * 2 + 20 // xl:px-12
+    else if (lg)
+      return 135 * 6 + 40 * 2 + 20 // lg:px-10
+    else if (md)
+      return 135 * 5 + 32 * 2 + 20 // md:px-8
+    else if (sm)
+      return 135 * 4 + 24 * 2 + 20 // sm:px-6
     else if (min480) return 135 * 3 + 20 * 2 + 20 // min-[480px]:px-5
     return 135 * 2 + 16 * 2 // px-4
   }, [xl, lg, md, sm, min480])
 
   const columns = useCallback(() => {
     // if (typeof window === 'undefined') return 0
-    if (xl) return 8 // xl
-    else if (lg) return 6 // lg
-    else if (md) return 5 // md
-    else if (sm) return 4 // sm
+    if (xl)
+      return 8 // xl
+    else if (lg)
+      return 6 // lg
+    else if (md)
+      return 5 // md
+    else if (sm)
+      return 4 // sm
     else if (min480) return 3 // min-[480px]
     return 2
   }, [xl, lg, md, sm, min480])

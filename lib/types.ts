@@ -1,4 +1,4 @@
-export type CMCMap = {
+export type CMC = {
   id: number
   rank: number
   name: string
@@ -12,6 +12,13 @@ export type CMCMap = {
     name: string
     slug: string
     symbol: string
-    token_address: string
+    token_address?: string
   }
+}
+
+export type Crypto = {
+  png: string
+  rank: number
+  symbol: string
+  name: string
 }
