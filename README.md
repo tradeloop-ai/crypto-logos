@@ -35,6 +35,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 
 ## Deploy on Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fajayvignesh01%2FCrypto-Logos&env=CMC_PRO_API_KEY&stores=[{"type":"postgres"},{"type":"kv"}])
 
 The easiest way to deploy this app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
