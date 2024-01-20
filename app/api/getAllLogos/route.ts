@@ -4,6 +4,8 @@ import { kv } from '@vercel/kv'
 import { sql } from '@vercel/postgres'
 import { NextRequest, NextResponse } from 'next/server'
 
+export const revalidate = 604800
+
 const ratelimit = new Ratelimit({
   redis: kv,
   // 5 requests from the same IP in 1 day
