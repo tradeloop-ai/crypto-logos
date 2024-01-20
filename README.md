@@ -31,12 +31,23 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+You will need to add the following to your .env.local.
+- [CMC_PRO_API_KEY](https://pro.coinmarketcap.com/)
+- [POSTGRES_URL](https://vercel.com/storage/postgres)
+- [KV_REST_API_TOKEN](https://vercel.com/storage/kv)
+- [KV_REST_API_URL](https://vercel.com/storage/kv)
+
+Then visit http://localhost:3000/api/cron/cmc to trigger data retrieval from CMC
+- This is only required if it is your first time running dev server or deployment.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 
 ## Deploy on Vercel
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fajayvignesh01%2FCrypto-Logos&env=CMC_PRO_API_KEY&stores=[{"type":"postgres"},{"type":"kv"}])
 
-The easiest way to deploy this app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The easiest way to deploy this app is to use the Vercel Deploy button above.
+- You will need to obtain a [CMC Pro API Key](https://pro.coinmarketcap.com/).
+- Once your application is deployed, visits `/api/cron/cmc` to trigger data retrieval from CMC.
+  - This is only required for your first deployment.
+- And you're good to go!

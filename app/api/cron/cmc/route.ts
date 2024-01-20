@@ -5,6 +5,22 @@ import { NextResponse } from 'next/server'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
+  // Create table if it doesn't exist already
+  await sql.query(`
+    CREATE TABLE IF NOT EXISTS public.cmc
+    (
+        id                    bigint                   not null primary key,
+        rank                  bigint                   not null,
+        name                  text                     not null,
+        symbol                text                     not null,
+        slug                  text                     not null,
+        is_active             boolean                  not null,
+        first_historical_data timestamp with time zone not null,
+        last_historical_data  timestamp with time zone not null,
+        platform              jsonb
+    );
+  `)
+
   const response = await fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/map', {
     headers: {
       'X-CMC_PRO_API_KEY': process.env.CMC_PRO_API_KEY! as string
