@@ -13,22 +13,27 @@ export async function GET() {
   const json = await response.json()
   const cmc = json.data as CMC[]
 
-  const delete_query = await sql.query(`DELETE FROM public.cmc`)
-
-  const insert_query = await sql.query(
+  const upsert_query = await sql.query(
     `INSERT INTO public.cmc (id, rank, name, symbol, slug, is_active, first_historical_data, last_historical_data, platform)
      SELECT id, rank, name, symbol, slug, is_active, first_historical_data, last_historical_data, platform::jsonb
-     FROM json_populate_recordset(NULL::public.cmc, $1)`,
+     FROM json_populate_recordset(NULL::public.cmc, $1)
+     ON CONFLICT (id) DO UPDATE
+         SET rank                  = EXCLUDED.rank,
+             name                  = EXCLUDED.name,
+             symbol                = EXCLUDED.symbol,
+             slug                  = EXCLUDED.slug,
+             is_active             = EXCLUDED.is_active,
+             first_historical_data = EXCLUDED.first_historical_data,
+             last_historical_data  = EXCLUDED.last_historical_data,
+             platform              = EXCLUDED.platform`,
     [JSON.stringify(cmc)]
   )
 
-  console.log(
-    `${delete_query.rowCount} coins deleted & ${insert_query.rowCount} coins inserted from CMC`
-  )
+  console.log(`${upsert_query.rowCount} coins updated in CMC`)
 
   return NextResponse.json(
     {
-      message: `${insert_query.rowCount} coins updated from CMC`
+      message: `${upsert_query.rowCount} coins updated from CMC`
     },
     {
       status: 200
