@@ -49,6 +49,6 @@ Then visit [http://localhost:3000](http://localhost:3000) see the result.
 
 The easiest way to deploy this app is to use the Vercel Deploy button above.
 - You will need to obtain a [CMC Pro API Key](https://pro.coinmarketcap.com/).
-- Once your application is deployed, visits `/api/cron/cmc` to trigger data retrieval from CMC.
+- Once your application is deployed, visit `/api/cron/cmc` to trigger data retrieval from CMC.
   - This is only required for your first deployment.
 - And you're good to go!
