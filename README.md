@@ -23,24 +23,25 @@ An abstraction built from the actively maintained database of cryptocurrencies b
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Clone the repository, then run the development server:
+You will need a Postgres DB and Redis KV solution before being able to run dev server. It is highly recommended to use the Deploy to Vercel button below as it will walk you though setting these up.
 
-```bash
-pnpm dev
-```
+If you do not want to use Vercel Postgres & Vercel KV, you can also bring your own solutions. A Postgres DB is required, but you can get rid of the KV as it is only used for rate-limiting. The two places where it used are in `app/api/getLogos` and `app/api/getAllLogos`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You will need to add the following to your .env.local.
+Clone the repository, then add the following to your .env.local:
 - [CMC_PRO_API_KEY](https://pro.coinmarketcap.com/)
 - [POSTGRES_URL](https://vercel.com/storage/postgres)
 - [KV_REST_API_TOKEN](https://vercel.com/storage/kv)
 - [KV_REST_API_URL](https://vercel.com/storage/kv)
 
-Then visit http://localhost:3000/api/cron/cmc to trigger data retrieval from CMC
-- This is only required if it is your first time running dev server or deployment.
+And run:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
+
+If this is your first time running dev server or deployment, visit http://localhost:3000/api/cron/cmc to trigger data retrieval from CMC
+
+Then visit [http://localhost:3000](http://localhost:3000) see the result.
 
 
 ## Deploy on Vercel
